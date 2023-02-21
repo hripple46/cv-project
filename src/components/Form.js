@@ -7,6 +7,8 @@ export default class Form extends Component {
     this.state = {
       nameInput: "",
       name: "",
+      phoneNumberInput: null,
+      phoneNumber: null,
       submitStatus: false,
     };
     this.changeName = this.changeName.bind(this);
@@ -14,13 +16,22 @@ export default class Form extends Component {
   }
   submitName = (e) => {
     e.preventDefault();
-    this.setState({ name: this.state.nameInput, submitStatus: true });
+    this.setState({
+      name: this.state.nameInput,
+      submitStatus: true,
+      phoneNumber: this.state.phoneNumberInput,
+    });
     console.log(this.state);
   };
   changeName = (e) => {
     console.log(e.target.value);
     this.setState({
       nameInput: e.target.value,
+    });
+  };
+  changeNumber = (e) => {
+    this.setState({
+      phoneNumberInput: e.target.value,
     });
   };
 
@@ -39,14 +50,27 @@ export default class Form extends Component {
               value={this.state.nameInput}
               onChange={this.changeName}
             ></input>
+            <label htmlFor="phoneNumber">Phone Number: </label>
+            <input
+              type="number"
+              name="phoneNumber"
+              onChange={this.changeNumber}
+            ></input>
             <input type="submit"></input>{" "}
           </form>
-          <GeneralInfo name={this.state.name} />
         </div>
       );
     }
   }
   render() {
-    return <this.checkStatus />;
+    return (
+      <div>
+        <this.checkStatus />
+        <GeneralInfo
+          name={this.state.name}
+          phoneNumber={this.state.phoneNumber}
+        />
+      </div>
+    );
   }
 }
