@@ -1,10 +1,12 @@
 import { Component } from "react";
+import Form from "./components/Form";
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <div>Hello World</div>;
+    return (
+      <div>
+        <Form />
+      </div>
+    );
   }
 }
