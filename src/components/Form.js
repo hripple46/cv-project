@@ -1,75 +1,31 @@
 import { Component } from "react";
 import GeneralInfo from "./General_Info";
+import Education from "./Education";
 
 export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameInput: "",
-      name: "",
-      phoneNumberInput: null,
-      phoneNumber: null,
-      submitStatus: false,
+      formStatus: false,
     };
-    this.changeName = this.changeName.bind(this);
-    this.checkStatus = this.checkStatus.bind(this);
   }
-  submitName = (e) => {
+
+  submitStatus = (e) => {
     e.preventDefault();
     this.setState({
-      name: this.state.nameInput,
-      submitStatus: true,
-      phoneNumber: this.state.phoneNumberInput,
+      formStatus: true,
     });
     console.log(this.state);
-  };
-  changeName = (e) => {
-    console.log(e.target.value);
-    this.setState({
-      nameInput: e.target.value,
-    });
-  };
-  changeNumber = (e) => {
-    this.setState({
-      phoneNumberInput: e.target.value,
-    });
   };
 
-  checkStatus() {
-    console.log(this.state);
-    if (this.state.submitStatus === true) {
-      return null;
-    } else {
-      return (
-        <div>
-          <form onSubmit={this.submitName}>
-            <label htmlFor="name">Full Name: </label>
-            <input
-              type="text"
-              name="name"
-              value={this.state.nameInput}
-              onChange={this.changeName}
-            ></input>
-            <label htmlFor="phoneNumber">Phone Number: </label>
-            <input
-              type="number"
-              name="phoneNumber"
-              onChange={this.changeNumber}
-            ></input>
-            <input type="submit"></input>{" "}
-          </form>
-        </div>
-      );
-    }
-  }
   render() {
     return (
       <div>
-        <this.checkStatus />
-        <GeneralInfo
-          name={this.state.name}
-          phoneNumber={this.state.phoneNumber}
-        />
+        <form onSubmit={this.submitStatus}>
+          <GeneralInfo isSubmitted={this.state.formStatus} />
+          <Education isSubmitted={this.state.formStatus} />
+          <input type="submit"></input>
+        </form>
       </div>
     );
   }
