@@ -17,6 +17,12 @@ export default class Form extends Component {
     });
     console.log(this.state);
   };
+  editForm = (e) => {
+    e.preventDefault();
+    this.setState({
+      formStatus: false,
+    });
+  };
 
   render() {
     return (
@@ -25,6 +31,7 @@ export default class Form extends Component {
           <GeneralInfo isSubmitted={this.state.formStatus} />
           <Education isSubmitted={this.state.formStatus} />
           <input type="submit"></input>
+          <button onClick={this.editForm}>Edit</button>
         </form>
       </div>
     );
