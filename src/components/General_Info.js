@@ -45,6 +45,7 @@ export default class GeneralInfo extends Component {
           <input
             type="number"
             name="phoneNumber"
+            value={this.state.phoneNumberInput}
             onChange={this.changeNumber}
           ></input>
         </div>
