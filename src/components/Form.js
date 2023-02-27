@@ -29,7 +29,7 @@ export default class Form extends Component {
     return (
       <div>
         <form onSubmit={this.submitStatus}>
-          <GeneralInfo isSubmitted={this.state.formStatus} />
+          <GeneralInfo submissionStatus={this.state.formStatus} />
           <Education isSubmitted={this.state.formStatus} />
           <PracticalExperience isSubmitted={this.state.formStatus} />
           <input type="submit"></input>
